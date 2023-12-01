@@ -7,6 +7,7 @@ section .data
     format: db "%d", 0
     si_inf: db "Tu es trop jeune.", 10, 0
     si_sup: db "Bienvenue !", 10, 0
+    display_age: db "Votre age : ",10,0
 
 section .bss    
     age: resd 1 ; Assuming 4-byte integer
@@ -37,6 +38,11 @@ main:
     mov rdi, si_inf
     mov rax, 0
     call printf
+
+    mov rdi,display_age
+    mov rsi, age
+    mov rax,0
+    call printf
     jmp end
 
 supérieur:
@@ -44,6 +50,11 @@ supérieur:
     mov rax, 0
     call printf
 
+mov rdi,display_age
+    mov rsi, age
+    mov rax,0
+    call printf
+    
 end:
     pop rbp
     mov rax, 60
